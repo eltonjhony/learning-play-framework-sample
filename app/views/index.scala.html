@@ -1,0 +1,25 @@
+@(coupons: List[DiscountCoupon])
+
+@main("List of coupons") {
+    @if(coupons.isEmpty) {
+        <h3>Data not found</h3>
+    } else {
+        <h3>Recorded coupons:</h3>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Customer</th>
+                <th>value</th>
+            </tr>
+        @for(coupon <- coupons) {
+            <tr>
+                <td>@coupon.getId</td>
+                <td>@coupon.getCustomerName</td>
+                <td>R$ @coupon.getValue</td>
+            </tr>
+        }
+        </table>
+    }
+    <hr>
+    <a href="@routes.Application.formNewCoupon">New coupon</a>
+}

@@ -1,0 +1,10 @@
+@(formDiscount: Form[DiscountCoupon])
+@import helper._
+
+@main("Register Coupon") {
+    @helper.form(routes.Application.newCoupon) {
+        @inputText(formDiscount("customerName"), '_label -> "Customer Name")
+        @inputText(formDiscount("value"), '_label -> "Value")
+        <input type="submit" value="Create" />
+    }
+}
