@@ -10,12 +10,17 @@ import play.db.ebean.Model;
  * Created by eltonjhony on 21/10/16.
  */
 @Entity
-public class DiscountCoupon extends Model {
+public class
+DiscountCoupon extends Model {
 
     @Id @GeneratedValue
     private Long id;
     private String customerName;
     private Double value;
+
+    public static Finder<Long, DiscountCoupon> find() {
+        return new Model.Finder<>(Long.class, DiscountCoupon.class);
+    }
 
     public Long getId() {
         return id;

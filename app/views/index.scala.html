@@ -5,21 +5,23 @@
         <h3>Data not found</h3>
     } else {
         <h3>Recorded coupons:</h3>
-        <table>
-            <tr>
-                <th>Id</th>
-                <th>Customer</th>
-                <th>value</th>
-            </tr>
-        @for(coupon <- coupons) {
-            <tr>
-                <td>@coupon.getId</td>
-                <td>@coupon.getCustomerName</td>
-                <td>R$ @coupon.getValue</td>
-            </tr>
-        }
+        <table class="tabletable-stripedtable-bordered"
+               cellpadding="0"cellspacing="0"border="0"width="100%">
+            @for(coupon <- coupons) {
+                <tfoot>
+                    <tr>
+                        <th>
+                            <a href="@routes.Application.details(coupon.getId)" >
+                                @coupon.getId
+                            </a>
+                        </th>
+                        <th>@coupon.getCustomerName</th>
+                        <th>R$ @coupon.getValue</th>
+                    </tr>
+                </tfoot>
+            }
         </table>
     }
     <hr>
-    <a href="@routes.Application.formNewCoupon">New coupon</a>
+    <a href="@routes.Application.newCoupon">New coupon</a>
 }

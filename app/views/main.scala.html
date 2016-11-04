@@ -6,10 +6,28 @@
     <head>
         <title>@title</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
         <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
     </head>
     <body>
-        @content
+        <div class="container">
+            <div class="header">
+                <ul class="navnav-pillspull-right">
+                    <li class="active">
+                        <a href="/">Home</a>
+                    </li>
+                </ul>
+            </div>
+            @if(flash.containsKey("success")){
+                <div class="alert alert-success">@flash.get("success")</div>
+            }
+            @if(flash.containsKey("error")){
+                <div class="alert alert-danger">@flash.get("error")</div>
+            }
+            <br/><br/>
+            @content
+        </div>
     </body>
 </html>

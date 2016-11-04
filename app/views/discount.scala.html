@@ -1,10 +1,31 @@
 @(formDiscount: Form[DiscountCoupon])
+@implicitField = @{  FieldConstructor(field.f)}
+
 @import helper._
 
 @main("Register Coupon") {
-    @helper.form(routes.Application.newCoupon) {
-        @inputText(formDiscount("customerName"), '_label -> "Customer Name")
-        @inputText(formDiscount("value"), '_label -> "Value")
-        <input type="submit" value="Create" />
+    @if(formDiscount("id").value) {
+        <legend>Edit discount</legend>
+    } else {
+        <legend>New discount</legend>
+    }
+    @form(action=routes.Application.saveCoupon) {
+        <div class="form-group">
+            <div class="control-group">
+                <div class="controls">
+                    <input type="hidden" name='@formDiscount("id").name' value='@formDiscount("id").value'>
+                    @inputText(formDiscount("customerName"), '_label -> "Customer Name")
+                    @inputText(formDiscount("value"), '_label -> "Value")
+                </div>
+            </div>
+            <div class="control-group">
+                <button class="btn btn-primary">Save</button>
+                @if(formDiscount("id").value) {
+                    <a href="@routes.Application.remove(formDiscount.get().getId)"
+                       class="btn btn-primary">Delete</a>
+                }
+                <a href="@routes.Application.index()" class="btn btn-primary">Cancel</a>
+            </div>
+        </div>
     }
 }

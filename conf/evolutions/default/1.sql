@@ -4,24 +4,20 @@
 # --- !Ups
 
 create table discount_coupon (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   customer_name             varchar(255),
   value                     double,
   constraint pk_discount_coupon primary key (id))
 ;
-
-create sequence discount_coupon_seq;
 
 
 
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+SET FOREIGN_KEY_CHECKS=0;
 
-drop table if exists discount_coupon;
+drop table discount_coupon;
 
-SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists discount_coupon_seq;
+SET FOREIGN_KEY_CHECKS=1;
 
